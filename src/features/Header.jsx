@@ -1,27 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Tabs, Tab, Box } from "@mui/material";
 import { getDaysOfWeek, formatDay } from "@utils";
 
-export default function Header({ onDateChange }) {
-  const [selectedTab, setSelectedTab] = useState(0);
+export default function Header({ onDateChange, selectedDate }) {
+  const days = useMemo(() => getDaysOfWeek(), []);
 
-  const days = getDaysOfWeek();
+  // Find the tab index that matches the selected date
+  const selectedTabIndex = useMemo(() => {
+    if (!selectedDate) return 0;
+    const index = days.findIndex((day) => {
+      const { dateString } = formatDay(day);
+      return dateString === selectedDate;
+    });
+    return index >= 0 ? index : 0;
+  }, [selectedDate, days]);
 
   const handleChange = (event, newValue) => {
-    setSelectedTab(newValue);
     const selectedDate = formatDay(days[newValue]).dateString;
     if (onDateChange) {
       onDateChange(selectedDate);
     }
   };
 
-  // Initialize with first day's date
+  // Initialize with first day's date if no selectedDate is provided
   useEffect(() => {
-    if (onDateChange && days.length > 0) {
+    if (!selectedDate && onDateChange && days.length > 0) {
       const firstDate = formatDay(days[0]).dateString;
       onDateChange(firstDate);
     }
-  }, [onDateChange, days]);
+  }, [onDateChange, days, selectedDate]);
 
   return (
     <Box
@@ -35,7 +42,7 @@ export default function Header({ onDateChange }) {
       }}
     >
       <Tabs
-        value={selectedTab}
+        value={selectedTabIndex}
         onChange={handleChange}
         variant="scrollable"
         scrollButtons="auto"
@@ -71,9 +78,9 @@ export default function Header({ onDateChange }) {
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 border: "1px solid #e0e0e0",
                 backgroundColor:
-                  index === selectedTab ? "#e3f2fd" : "transparent",
+                  index === selectedTabIndex ? "#e3f2fd" : "transparent",
                 borderBottom:
-                  index === selectedTab ? "none" : "1px solid #e0e0e0",
+                  index === selectedTabIndex ? "none" : "1px solid #e0e0e0",
                 "&.Mui-selected": {
                   borderBottom: "none",
                 },

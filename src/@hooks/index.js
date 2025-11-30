@@ -1,3 +1,0 @@
-/*
- * - Global hooks goes here
- */

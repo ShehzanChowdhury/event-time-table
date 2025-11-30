@@ -22,7 +22,7 @@ export default function VenueBar({
       <TableCell
         sx={{
           width: `${timeColumnWidth}px`,
-          minWidth: `${timeColumnWidth}px`,
+          maxWidth: `${timeColumnWidth}px`,
           padding: "12px 16px",
           borderRight: "2px solid #e0e0e0",
           borderBottom: "2px solid #e0e0e0",
@@ -31,6 +31,7 @@ export default function VenueBar({
           left: 0,
           zIndex: 101,
           boxShadow: "2px 0 4px rgba(0,0,0,0.1)",
+          boxSizing: "border-box",
         }}
       />
       {/* Venue header cells */}
@@ -39,7 +40,7 @@ export default function VenueBar({
           key={venue.id}
           sx={{
             width: `${venueWidth}px`,
-            minWidth: `${venueWidth}px`,
+            maxWidth: `${venueWidth}px`,
             padding: "12px 16px",
             borderRight: "1px solid #e0e0e0",
             borderBottom: "2px solid #e0e0e0",
@@ -50,6 +51,7 @@ export default function VenueBar({
             position: "sticky",
             top: 0,
             zIndex: 100,
+            boxSizing: "border-box",
           }}
         >
           <Typography
