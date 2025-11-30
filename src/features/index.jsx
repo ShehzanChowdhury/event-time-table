@@ -17,5 +17,5 @@
  *
  * Guideline:
  * - Avoid using the `@` symbol before directories, as it should be reserved for global or reusable resources across the entire project.
- * - Remove this `index.tsx` file, it's only for this documentation
+ * - Remove this `index.jsx` file, it's only for this documentation
  */

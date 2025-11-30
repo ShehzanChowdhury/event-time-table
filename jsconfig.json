@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["./@components/*"],
+      "@utils": ["./@utils"],
+      "@utils/*": ["./@utils/*"],
+      "@hooks": ["./@hooks"],
+      "@hooks/*": ["./@hooks/*"],
+      "@services": ["./@services"],
+      "@services/*": ["./@services/*"],
+      "@config": ["./@config"],
+      "@config/*": ["./@config/*"],
+      "@assets": ["./@assets"],
+      "@assets/*": ["./@assets/*"]
+    }
+  },
+  "include": ["src"]
+}
+
